@@ -1,0 +1,16 @@
+{
+  "name": "catworld-copy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute catworld-copy --remote --file=./schema.sql && wrangler d1 execute catworld-copy --remote --file=./migrations/0002_social.sql",
+    "check": "node --check public/app.js && node --check public/sim.js && node --check public/maps.js && node --check public/hall.js && node --check public/social-ui.js && node --check src/common.js && node --check src/model.js && node --check src/world.js && node --check src/worker.js && node --check src/social.js && node --check src/nyan.js && node --check src/nyan-provider.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "wrangler": "^4.141.0"
+  }
+}
