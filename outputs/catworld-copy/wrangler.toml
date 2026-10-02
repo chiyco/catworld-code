@@ -1,0 +1,30 @@
+name = "catworld-copy"
+account_id = "6f3ad9500301c0dc848ad4fa8ba18c68"
+main = "src/worker.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = ["/api/*", "/ws"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "catworld-copy"
+database_id = "6cb4279e-a326-4191-9bd8-347a4fd3a534"
+
+[observability]
+enabled = true
+
+[[durable_objects.bindings]]
+name = "WORLD"
+class_name = "PresenceDO"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["PresenceDO"]
+
+[triggers]
+crons = ["0 4 * * *"]
